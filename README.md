@@ -1,15 +1,149 @@
-Quick Commerce Inventory & Driver Management SystemThis project is a complete management application for a quick commerce service, created for the PES University DBMS Mini Project. It features a multi-tabbed desktop GUI built with Python (Tkinter) that interacts with a robust MySQL database. The system effectively manages inventory, a fleet of drivers, and customer orders, all governed by secure and efficient database-side business logic.Team Details:ADITYA VENKATESH (PES1UG23AM024)ADARSH R MENON (PES1UG23AM016)FeaturesThe application is divided into four main tabs, each corresponding to a key user role:1. Customer AppPlace Orders: A simple interface for customers to select from available products and place an order.Real-Time Stock: The product list only shows items that are actually in stock, with quantities fetched live from the database.Cart Functionality: Add/remove items to a cart before placing the final order.Order Validation: The database (via a stored procedure) validates that there is sufficient stock before confirming the order.2. Warehouse ManagerManage Products: A CRUD (Create, Read, Update) interface for adding new products to the master product catalog.Manage Inventory: A dedicated panel to add new stock or update the quantity of existing products in the warehouse.3. Fleet ManagerManage Drivers: A CRUD interface for adding new drivers and updating their availability status (Available, On-Trip, Unavailable).Manage Fleet: A CRUD interface for adding new vehicles and updating their status (Available, In-Use, Maintenance).Assign Driver to Vehicle: An "Assign" utility that only shows available drivers and available vehicles, allowing the manager to pair them for a delivery.4. System AdministratorManage Customers: A simple CRUD interface for adding new customers to the system.Generate Sales Reports: A reporting tool to view all sales that occurred within a specific date range.Technologies UsedFrontend (GUI): Python 3, TkinterBackend Database: MySQLDatabase Connector: mysql-connector-pythonDatabase Logic: Advanced SQL (Stored Procedures, Triggers, Transactions)How to Run This ProjectFollow these steps to set up and run the application on your local machine.PrerequisitesMySQL Server & Workbench: You must have a MySQL server running (e.g., from the MySQL Workbench installer).Python 3: Ensure Python 3 is installed on your system.Step 1: Set Up the DatabaseOpen MySQL Workbench and connect to your local database server.Open the QuickCommerceDB_CompleteSetup.sql file provided in this repository.Execute the entire SQL script. This will:Create the QuickCommerceDB database.Create all required tables (e.g., PRODUCT, INVENTORY, DRIVER, ORDER, etc.).Insert the default "Main Warehouse" (ID 1), which is required by the app.Define all the necessary Stored Procedures, Triggers, and database fixes.Step 2: Set Up the Python EnvironmentOpen your terminal or command prompt.Navigate to the project directory (where app.py is located).It is recommended to create a virtual environment:python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-Install the required Python library:pip install mysql-connector-python
-Step 3: Configure the ApplicationOpen the app.py file in a text editor.Find the db_config dictionary near the top of the file (around line 14).Change the user and password values to match your MySQL server's credentials (the ones you use to log in to MySQL Workbench).# IMPORTANT: Update this dictionary with your own MySQL Workbench credentials!
+# 🏪 Quick Commerce Inventory & Driver Management System
+
+**A complete database-driven management application for a quick commerce service, built as part of the PES University DBMS Mini Project.**
+
+This project provides an end-to-end management system for handling **inventory**, **drivers**, and **customer orders** using a desktop GUI made with Python (Tkinter) and a robust **MySQL** backend.  
+It emphasizes **data integrity**, **transaction safety**, and **database-side business logic** through **stored procedures** and **triggers**.
+
+---
+
+## 👨‍💻 Team Details
+
+| Name | Register Number |
+|------|------------------|
+| **Aditya Venkatesh** | PES1UG23AM024 |
+| **Adarsh R Menon** | PES1UG23AM016 |
+
+---
+
+## ⚙️ Features Overview
+
+The application is divided into **four primary tabs**, corresponding to key user roles and functions:
+
+### 🛒 1. Customer App
+- **Place Orders:** Simple interface for selecting products and placing new orders.  
+- **Real-Time Stock:** Only displays products that are in stock, fetched dynamically from the database.  
+- **Cart Functionality:** Add/remove items before confirming the final order.  
+- **Order Validation:** Stored procedure validates stock availability before order confirmation.  
+
+### 🏭 2. Warehouse Manager
+- **Manage Products:** CRUD operations for maintaining the master product catalog.  
+- **Manage Inventory:** Add or update stock quantities for existing products.  
+
+### 🚚 3. Fleet Manager
+- **Manage Drivers:** CRUD interface for adding drivers and updating availability (`Available`, `On-Trip`, `Unavailable`).  
+- **Manage Fleet:** CRUD interface for vehicle management (`Available`, `In-Use`, `Maintenance`).  
+- **Assign Driver to Vehicle:** Pairs available drivers and vehicles securely in a single transaction.  
+
+### 🖥️ 4. System Administrator
+- **Manage Customers:** CRUD operations for customer registration.  
+- **Generate Sales Reports:** View sales between specific date ranges using efficient SQL joins.  
+
+---
+
+## 🧰 Technologies Used
+
+| Layer | Technology |
+|--------|-------------|
+| **Frontend (GUI)** | Python 3, Tkinter |
+| **Backend Database** | MySQL |
+| **Database Connector** | `mysql-connector-python` |
+| **Database Logic** | Stored Procedures, Triggers, Transactions |
+
+---
+
+## 🚀 How to Run This Project
+
+### 🧩 Prerequisites
+
+- **MySQL Server & Workbench** (ensure the server is running)
+- **Python 3** (latest version recommended)
+
+---
+
+### 🗄️ Step 1: Set Up the Database
+
+1. Open **MySQL Workbench** and connect to your local server.  
+2. Open the file: **`QuickCommerceDB_CompleteSetup.sql`**  
+3. Execute the script — this will:
+   - Create the database **`QuickCommerceDB`**
+   - Create all required tables (`PRODUCT`, `INVENTORY`, `DRIVER`, `ORDER`, etc.)
+   - Insert the **Main Warehouse (ID = 1)**
+   - Define all stored procedures and triggers  
+
+---
+
+### 🐍 Step 2: Set Up the Python Environment
+
+Open your terminal or command prompt, then navigate to the project directory (where `app.py` is located):
+
+<pre>
+cd path/to/project
+
+Create and activate a virtual environment:
+
+python -m venv venv
+# On macOS/Linux
+source venv/bin/activate
+# On Windows
+venv\Scripts\activate
+
+Install the required library:
+
+pip install mysql-connector-python
+</pre>
+
+
+### ⚙️ Step 3: Configure the Application
+
+Open **`app.py`** and locate the `db_config` dictionary near the top (around line 14):
+
+<pre>
+```python
 db_config = {
     'host': 'localhost',
-    'user': 'your_username',    # e.g., 'root'
-    'password': 'your_password',# Your MySQL password
+    'user': 'your_username',     # e.g., 'root'
+    'password': 'your_password', # your MySQL password
     'database': 'QuickCommerceDB'
 }
-Step 4: Run the ApplicationWith your virtual environment activated and the db_config saved, run the app from your terminal:python app.py
-The application window should now open. You can start by adding Products and Inventory in the "Warehouse" tab, and then placing an order in the "Customer App" tab.Database LogicThis project moves critical business logic into the database for security and integrity.Stored Procedures:PlaceNewOrder(...): This procedure handles the entire order process as a single, safe transaction. It checks stock, creates the order, updates inventory, and creates a payment record. If any step fails (e.g., out of stock), the entire operation is rolled back, preventing data corruption.AssignDriverToVehicle(...): Ensures that a driver and vehicle are updated together in a safe transaction.GenerateSalesReport(...): Joins 5 tables on the server to efficiently generate a report.Triggers:After_OrderStatusUpdate_Log: An audit trigger that automatically logs every order status change into the Order_History table.File Structure.
-├── app.py                            # The main Python Tkinter GUI application
-├── QuickCommerceDB_CompleteSetup.sql   # The complete SQL file to set up the database
-└── README.md                         # This file
+</pre>
+### ▶️ Step 4: Run the Application
+
+With your virtual environment activated, run the app:
+
+<pre>
+python app.py
+</pre>
+The Tkinter application window will open.
+Start by adding Products and Inventory in the Warehouse tab, then proceed to place an order in the Customer App tab.
+
+🧠 Database Logic
+This project emphasizes secure, transaction-based operations — core business logic is implemented at the database level.
+
+🧾 Stored Procedures
+Procedure	Description
+PlaceNewOrder(...)	Handles the entire order placement as a single transaction. Checks stock, creates an order, updates inventory, and records payment. Rolls back on failure.
+AssignDriverToVehicle(...)	Safely pairs a driver and a vehicle within one transaction.
+GenerateSalesReport(...)	Efficiently joins multiple tables to produce sales reports.
+
+🧩 Triggers
+Trigger	Description
+After_OrderStatusUpdate_Log	Automatically logs every order status change into the Order_History table for audit tracking.
+
+📁 File Structure
+graphql
+├── app.py                            # Main Python Tkinter GUI application
+├── QuickCommerceDB_CompleteSetup.sql  # Full MySQL database setup script
+└── README.md                         # Project documentation
+🧾 Summary
+This system demonstrates the integration of database-centric design with a Tkinter desktop GUI, ensuring:
+
+✅ Data integrity
+
+🔒 Transaction safety
+
+👥 Role-based functionality
+
+⚡ Seamless user experience
+
+It serves as a practical model for small-scale quick commerce systems that balance real-time usability with strong backend consistency.
